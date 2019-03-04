@@ -17,6 +17,23 @@ app.get("/dog", function(req, res) {
 	res.send("MEOW");
 });
 
+// Route Parameter
+//   `req.params` contains all of the route parameters and their corresponding values
+app.get("/r/:subredditName", function(req, res) {
+	console.log(req.params);
+	var subreddit = req.params.subredditName
+	res.send("WELCOME TO THE " + subreddit.toUpperCase() + " SUBREDDIT!");
+});
+
+app.get("/r/:subredditName/comments/:id/:title/", function(req, res){
+    console.log(req.params);
+    res.send("WELCOME TO THE COMMENTS PAGE!"); 
+});
+
+app.get("/*", function(req, res) {
+	res.send("Your are a STAR!");
+});
+
 // Tell Express to listen for request
 //   The third argument is optional
 app.listen(3000, "127.0.0.1", function() { 
